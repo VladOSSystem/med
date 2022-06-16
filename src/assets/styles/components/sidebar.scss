@@ -1,0 +1,23 @@
+.sidebar_active {
+    .MuiListItemButton-root {
+        background-color: rgba(94, 94, 94, 0.415);
+    }
+    text-decoration: none;
+    color: rgb(94, 94, 94);
+}
+.sidebar_sleep {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.drawer-menu {
+    .MuiPaper-root {
+        @include res_600 {
+            margin-left: -60px ;
+        }
+    }
+}
+
+.appbar {
+    width: calc(100% - 240px),
+}
