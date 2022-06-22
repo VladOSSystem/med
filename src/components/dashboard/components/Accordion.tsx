@@ -49,14 +49,12 @@ const ExpandableRowTable = (props: any) => {
   const options: MUIDataTableOptions = {
     filter: true,
     onFilterChange: (changedColumn: any, filterList: any) => {
-      console.log(changedColumn, filterList);
     },
     selectableRows: "none",
     filterType: "dropdown",
     rowsPerPage: 10,
     expandableRows: true,
     renderExpandableRow: (rowData: any, rowMeta: any) => {
-      console.log(rowData, rowMeta);
       return (
         <React.Fragment>
           <tr>
@@ -134,7 +132,6 @@ const ExpandableRowTable = (props: any) => {
         </React.Fragment>
       );
     },
-    page: 1
   };
 
   return (

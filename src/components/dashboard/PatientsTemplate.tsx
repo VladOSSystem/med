@@ -1,28 +1,28 @@
-import React, { useEffect } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, { useEffect, useState } from 'react';
+import {createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Header from './Header';
-import RowTableCache from './components/AccordionCache';
-import { useCache } from '../../hooks/useAction';
+import AccordionPatients from './components/AccordionPatients';
+import { usePatients } from '../../hooks/useAction';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 const mdTheme = createTheme();
 
-const CacheTempate: React.FC = () => {
-  const {cache, error, load} = useTypedSelector(state => state.cache);
-  const {getCache} = useCache();
+const PatientsTemplate: React.FC = () => {
+  const {patients, error, load} = useTypedSelector(state => state.patients);
+  const {getPatients} = usePatients();
   useEffect(() => {
-    getCache()
+    getPatients()
   }, [])
-  return (
+    return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <Header name='Cache'/>
+        <Header name='Patients List'/>
         <Box
           component="main"
           sx={{
@@ -38,8 +38,10 @@ const CacheTempate: React.FC = () => {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
+          
+              {/* Recent Orders */}
               <Grid item xs={12}>
-                <RowTableCache cache={cache}/>
+                <AccordionPatients header="Patients" patients={patients} load={load}/>
               </Grid>
             </Grid>
           </Container>
@@ -49,4 +51,4 @@ const CacheTempate: React.FC = () => {
   );
 }
 
-export default CacheTempate;
+export default PatientsTemplate;

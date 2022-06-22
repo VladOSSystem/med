@@ -13,7 +13,7 @@ interface ICache {
 
 const RowTableCache = (props: {cache: ICache[]}) => {
   const {cache} = props;
-  const [dataTest, setDataTest]: any = useState([])
+  const [data, setData] = useState<(object | string[] | number[])[]>([])
   const columns = [
     {
         name: "Testing center"
@@ -32,67 +32,10 @@ const RowTableCache = (props: {cache: ICache[]}) => {
     },
   ];
 
-//   const data = [
-//     ["Synlab, Via test 2, Milan", "PCR", "14/04/2022", "14/04/2022 14:31", 
-//         <div className="chache-detail-btn">
-//             <Link to={'/cache-info/1'}>
-//                 <Button variant="outlined" color="secondary" >
-//                     More Info
-//                 </Button>
-//             </Link>
-//             <Button variant="outlined" color="success">
-//                 Download
-//             </Button>
-//             <Button variant="outlined" color="error">
-//                 Delete
-//             </Button>
-//         </div>],
-//     ["Synlab, Via test 2, Milan", "PCR", "14/04/2022", "14/04/2022 14:31", 
-//     <div className="chache-detail-btn">
-//         <Link to={'/cache-info/1'}>
-//             <Button variant="outlined" color="secondary" >
-//                 More Info
-//             </Button>
-//         </Link>
-//         <Button variant="outlined" color="success">
-//             Download
-//         </Button>
-//         <Button variant="outlined" color="error">
-//             Delete
-//         </Button>
-//     </div>],
-//     ["Synlab, Via test 2, Milan", "PCR", "14/04/2022", "14/04/2022 14:31", 
-//     <div className="chache-detail-btn">
-//         <Link to={'/cache-info/1'}>
-//             <Button variant="outlined" color="secondary" >
-//                 More Info
-//             </Button>
-//         </Link>
-//         <Button variant="outlined" color="success">
-//             Download
-//         </Button>
-//         <Button variant="outlined" color="error">
-//             Delete
-//         </Button>
-//     </div>],
-//     ["Synlab, Via test 2, Milan", "PCR", "14/04/2022", "14/04/2022 14:31", 
-//     <div className="chache-detail-btn">
-//         <Link to={'/cache-info/1'}>
-//             <Button variant="outlined" color="secondary" >
-//                 More Info
-//             </Button>
-//         </Link>
-//         <Button variant="outlined" color="success">
-//             Download
-//         </Button>
-//         <Button variant="outlined" color="error">
-//             Delete
-//         </Button>
-//     </div>],
-//   ];
   useEffect(() => {
-    cache.map((v: any) => { 
-        setDataTest((currentArray: any) => [...currentArray, [v.center, v.testType, v.date, v.expiry, 
+    cache.map((value: ICache) => { 
+        const {center, testType, date, expiry} = value;
+        setData((currentArray) => [...currentArray, [center, testType, date, expiry, 
             <div className="chache-detail-btn">
                 <Link to={'/cache-info/1'}>
                     <Button variant="outlined" color="secondary" >
@@ -109,11 +52,9 @@ const RowTableCache = (props: {cache: ICache[]}) => {
         ]])
     })
   }, [cache])
-
   const options: MUIDataTableOptions = {
     filter: true,
     onFilterChange: (changedColumn: any, filterList: any) => {
-      console.log(changedColumn, filterList);
     },
     selectableRows: "none",
     filterType: "dropdown",
@@ -126,13 +67,12 @@ const RowTableCache = (props: {cache: ICache[]}) => {
         </React.Fragment>
       );
     },
-    page: 1
   };
 
   return (
         <MUIDataTable
         title={"Cache Services"}
-        data={dataTest}
+        data={data}
         columns={columns}
         options={options}
         />

@@ -7,6 +7,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import BeenhereIcon from '@mui/icons-material/Beenhere';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
 // import LayersIcon from '@mui/icons-material/Layers';
 // import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom';
@@ -48,7 +50,7 @@ const MainListItems = () => {
         }>
       <ListItemButton>
         <ListItemIcon>
-          <PeopleIcon />
+          <LocalHospitalIcon />
         </ListItemIcon>
         <ListItemText primary="Medical" />
       </ListItemButton>
@@ -69,6 +71,18 @@ const MainListItems = () => {
           <BarChartIcon />
         </ListItemIcon>
         <ListItemText primary="Cache" />
+      </ListItemButton>
+      </Link>
+      <Link 
+        to={'/patients'}
+        className={
+          location.pathname.includes('/patients') ? "sidebar_active" : "sidebar_sleep"
+        }>
+      <ListItemButton>
+        <ListItemIcon>
+          <PeopleAltIcon />
+        </ListItemIcon>
+        <ListItemText primary="Patients" />
       </ListItemButton>
       </Link>
       {/* <ListItemButton>

@@ -1,28 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Header from './Header';
-import RowTableCache from './components/AccordionCache';
-import { useCache } from '../../hooks/useAction';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
+import Paper from '@mui/material/Paper';
+import Header from '../../Header';
+import BasicTabs from './PatientTabs';
+import PatientInfo from './PatientInfo';
 
 const mdTheme = createTheme();
 
-const CacheTempate: React.FC = () => {
-  const {cache, error, load} = useTypedSelector(state => state.cache);
-  const {getCache} = useCache();
-  useEffect(() => {
-    getCache()
-  }, [])
+const PatientTemplateDetail: React.FC = () => {
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <Header name='Cache'/>
+        <Header name="Patient Detail"/>
         <Box
           component="main"
           sx={{
@@ -38,8 +34,11 @@ const CacheTempate: React.FC = () => {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <RowTableCache cache={cache}/>
+              <Grid item xs={12} md={9} lg={4}>
+                <PatientInfo/>
+              </Grid>
+              <Grid item xs={12} md={9} lg={8}>
+                <BasicTabs/>
               </Grid>
             </Grid>
           </Container>
@@ -49,4 +48,4 @@ const CacheTempate: React.FC = () => {
   );
 }
 
-export default CacheTempate;
+export default PatientTemplateDetail;

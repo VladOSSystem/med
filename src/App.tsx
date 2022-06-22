@@ -13,6 +13,8 @@ import MedicalTemplate from './components/dashboard/MedicalTemplate';
 import MedicalDetail from './components/dashboard/MedicalTemplateDetail';
 import CacheTempate from './components/dashboard/CacheTemplate';
 import CacheTemplateDetail from './components/dashboard/CacheTemplateDetail';
+import PatientsTemplate from './components/dashboard/PatientsTemplate';
+import PatientTemplateDetail from './components/dashboard/components/patientDetail/PatientTemplateDetail';
 
 
 const App: React.FC = () => {
@@ -33,6 +35,8 @@ const App: React.FC = () => {
       <Route path='/medical-info/:id' element={<ProtectedRoute {...defaultProtectedRouteProps} roleRequired={'USER'} outlet={<MedicalDetail />} />} />
       <Route path='/cache' element={<ProtectedRoute {...defaultProtectedRouteProps} roleRequired={'PUBLIC'} outlet={<CacheTempate />} />} />
       <Route path='/cache-info/:id' element={<ProtectedRoute {...defaultProtectedRouteProps} roleRequired={'PUBLIC'} outlet={<CacheTemplateDetail />} />} />
+      <Route path='/patients' element={<ProtectedRoute {...defaultProtectedRouteProps} roleRequired={'PUBLIC'} outlet={<PatientsTemplate />} />} />
+      <Route path='/patients-info/:id' element={<ProtectedRoute {...defaultProtectedRouteProps} roleRequired={'PUBLIC'} outlet={<PatientTemplateDetail />} />} />
       <Route path="/denied" element={<ProtectedRoute {...defaultProtectedRouteProps} roleRequired={'PUBLIC'} outlet={<PermissionDenied />} />}/>
       <Route path='*' element={<Page404/>} />
     </Routes>
